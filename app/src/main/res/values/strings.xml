@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Couple</string>
+    <string name="title_days">Days</string>
+    <string name="title_account">Account</string>
+    <string name="title_square">Square</string>
+    <string name="title_diary">Diary</string>
+    <string name="title_my">My</string>
+
+    //days
+    <string name="days_card_profile_left_icon">profile icon left</string>
+    <string name="days_card_profile_right_icon">profile icon right</string>
+    <string name="days_card_together_days">We have been together 334 days</string>
+    <string name="days_card_together_start_date">since: 2022–5-1</string>
+    <string name="days_memory_cell_icon">memory icon</string>
+    <string name="days_memory_cell_description_passed">Our first %1$s is been</string>
+    <string name="days_memory_cell_description_coming">%1$s will happen in</string>
+    <string name="days_memory_cell_start_date">Jan 12, 2023</string>
+    <string name="days_memory_cell_days">%1$s days</string>
+    <string name="days_memory_cell_edit_button">edit the memory dates</string>
+    <string name="days_memory_cell_delete_button">delete this cell</string>
+</resources>
