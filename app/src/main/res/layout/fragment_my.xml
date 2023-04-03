@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.my.MyFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_profile_basic_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    <ImageButton
+        android:id="@+id/my_profile_photo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/my_profile_user_photo_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_my_profile_photo"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/my_profile_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_profile_user_name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@id/my_profile_photo"
+        app:layout_constraintTop_toTopOf="@id/my_profile_photo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="@string/my_profile_user_id"
+        app:layout_constraintTop_toBottomOf="@id/my_profile_name_textview"
+        app:layout_constraintStart_toStartOf="@id/my_profile_name_textview"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/my_profile_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/my_profile_basic_info"
+        android:background="@color/pink_FC5"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_profile_edit_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@id/my_profile_shadow"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/include_my_info_card"
+            layout="@layout/include_my_profile_edit_info_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <include
+            android:id="@+id/include_wallet_card"
+            layout="@layout/include_my_profile_edit_wallet_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/include_my_info_card"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <include
+            android:id="@+id/include_relationship_card"
+            layout="@layout/include_my_profile_edit_relationship_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/include_wallet_card"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <include
+            android:id="@+id/include_customer_service_card"
+            layout="@layout/include_my_profile_edit_customer_service_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/include_relationship_card"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <include
+            android:id="@+id/include_user_agreement_card"
+            layout="@layout/include_my_profile_edit_user_agreement_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/include_customer_service_card"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/profile_edit_log_out"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

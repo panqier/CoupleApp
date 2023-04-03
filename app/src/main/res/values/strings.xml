@@ -18,4 +18,15 @@
     <string name="days_memory_cell_days">%1$s days</string>
     <string name="days_memory_cell_edit_button">edit the memory dates</string>
     <string name="days_memory_cell_delete_button">delete this cell</string>
+
+    //my
+    <string name="my_profile_user_name">pp</string>
+    <string name="my_profile_user_id">id:123456</string>
+    <string name="my_profile_user_photo_button">user photo</string>
+    <string name="profile_edit_my_info">My Information</string>
+    <string name="profile_edit_wallet">Wallet</string>
+    <string name="profile_edit_relationship">Relationship</string>
+    <string name="profile_edit_customer_service">Customer Service</string>
+    <string name="profile_edit_user_agreement">User Agreement</string>
+    <string name="profile_edit_log_out">Log Out</string>
 </resources>

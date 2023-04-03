@@ -20,11 +20,7 @@ class MyFragment : Fragment() {
     ): View? {
         myViewModel =
             ViewModelProvider(this).get(MyViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_account, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        myViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
+        val root = inflater.inflate(R.layout.fragment_my, container, false)
         return root
     }
 }
