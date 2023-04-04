@@ -109,6 +109,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/my_profile_log_out_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="60dp"

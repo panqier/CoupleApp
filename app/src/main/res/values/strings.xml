@@ -29,4 +29,10 @@
     <string name="profile_edit_customer_service">Customer Service</string>
     <string name="profile_edit_user_agreement">User Agreement</string>
     <string name="profile_edit_log_out">Log Out</string>
+
+    //login
+    <string name="login_login_text">Log in</string>
+    <string name="login_edit_email">Your email</string>
+    <string name="login_edit_password">Your password</string>
+    <string name="login_login_create_account_text">Login/Register account</string>
 </resources>
