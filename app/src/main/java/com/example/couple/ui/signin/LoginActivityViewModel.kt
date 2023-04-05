@@ -1,4 +1,4 @@
-package com.example.couple
+package com.example.couple.ui.signin
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

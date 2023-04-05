@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.couple.R
-import com.example.couple.data.days.days
+import com.example.couple.data.data.days
 import com.example.couple.databinding.DaysMemoryCellBinding
 import com.example.couple.util.DateUtil
 import java.time.LocalDate

@@ -3,7 +3,7 @@ package com.example.couple.ui.days
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.couple.data.days.days
+import com.example.couple.data.data.days
 
 class DaysViewModel : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.example.couple.data.days
+package com.example.couple.data.data
 
 data class days(
     val type: String,

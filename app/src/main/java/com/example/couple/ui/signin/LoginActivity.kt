@@ -1,4 +1,4 @@
-package com.example.couple
+package com.example.couple.ui.signin
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -9,10 +9,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.couple.MainActivity
+import com.example.couple.data.data.userProfile
 import com.example.couple.databinding.ActivityLoginBinding
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
@@ -20,7 +24,9 @@ import java.util.regex.Pattern
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginActivityViewModel
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
     private lateinit var binding: ActivityLoginBinding
+    private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         fetchSignInMethod()
+        initListeners()
     }
 
 
@@ -54,9 +61,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun fetchSignInMethod(){
         auth = Firebase.auth
+        firestore = Firebase.firestore
         binding.signInButton.setOnClickListener {
-            val email = binding.loginEditEmail.text.toString()
-            val password = binding.loginEditPassword.text.toString()
+            val email = binding.loginEditEmail.text.toString().trim()
+            val password = binding.loginEditPassword.text.toString().trim()
             if(email.isEmpty()) {
                 Toast.makeText(this,"Enter email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -137,9 +145,12 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
+
                     val verification = user?.isEmailVerified
                     // Sign in success, update UI with the signed-in user's information
                     if(verification == true) {
+                        auth.uid?.let {
+                            firestore.collection("User").document(it).set(userProfile(email)) }
                         Toast.makeText(baseContext, "Log In Success",
                             Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
@@ -172,5 +183,11 @@ class LoginActivity : AppCompatActivity() {
         val pattern = Pattern.compile(passwordPattern)
         val matcher = pattern.matcher(password)
         return matcher.matches()
+    }
+
+    private fun initListeners() {
+        binding.forgetPasswordBtn.setOnClickListener {
+            ResetPasswordFragment().show(fragmentManager,"reset_password_dialog")
+        }
     }
 }
