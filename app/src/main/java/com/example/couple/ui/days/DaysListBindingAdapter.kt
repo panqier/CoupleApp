@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.couple.R
-import com.example.couple.data.data.days
+import com.example.couple.data.data.Days
 import com.example.couple.databinding.DaysMemoryCellBinding
 import com.example.couple.util.DateUtil
 import java.time.LocalDate
 import kotlin.math.abs
 
-class DaysListBindingAdapter(val daysList: List<days> = emptyList()) : RecyclerView.Adapter<DaysListBindingAdapter.DaysListViewHolder>(){
+class DaysListBindingAdapter(val daysList: List<Days> = emptyList()) : RecyclerView.Adapter<DaysListBindingAdapter.DaysListViewHolder>(){
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaysListViewHolder {
@@ -38,7 +38,7 @@ class DaysListBindingAdapter(val daysList: List<days> = emptyList()) : RecyclerV
                 val date: TextView = binding.daysMemoryCellStartDateText
                 val description: TextView = binding.daysMemoryCellDescription
                 val count: TextView = binding.daysMemoryCellHowManyDays
-                fun bind(context: Context, days: days) {
+                fun bind(context: Context, days: Days) {
                     date.text = days.date
                     icon.visibility = View.VISIBLE
                     description.text =
@@ -52,7 +52,7 @@ class DaysListBindingAdapter(val daysList: List<days> = emptyList()) : RecyclerV
             }
 }
 
-private fun differentDays(days: days): Int {
+private fun differentDays(days: Days): Int {
     return DateUtil.differenceInDates(
         LocalDate.now().toString(),
         days.date

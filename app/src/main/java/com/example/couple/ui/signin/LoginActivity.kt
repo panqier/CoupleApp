@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.couple.MainActivity
-import com.example.couple.data.data.userProfile
+import com.example.couple.data.data.UserProfile
 import com.example.couple.databinding.ActivityLoginBinding
+import com.example.couple.ui.my.MyViewModel
+import com.example.couple.util.UidDecode
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,9 +25,11 @@ import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginActivityViewModel
+    private lateinit var myViewModel: MyViewModel
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private lateinit var binding: ActivityLoginBinding
+    lateinit var userProfile: UserProfile
     private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +38,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(LoginActivityViewModel::class.java)
+        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
         binding.loginViewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner= this
 
         fetchSignInMethod()
         initListeners()
@@ -54,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setUpObservers(){
-        viewModel.signInEmail.observe(this, Observer {
+        viewModel.signInEmail.observe(this, {
             binding.loginEditEmail.text
         })
     }
@@ -150,7 +155,9 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     if(verification == true) {
                         auth.uid?.let {
-                            firestore.collection("User").document(it).set(userProfile(email)) }
+                            UidDecode.EncodeUserId(it)
+                            firestore.collection("User").document(it).set(UserProfile(UidDecode.getUserNumericId(),email)) }
+                        userProfile = UserProfile(UidDecode.getUserNumericId(),email)
                         Toast.makeText(baseContext, "Log In Success",
                             Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)

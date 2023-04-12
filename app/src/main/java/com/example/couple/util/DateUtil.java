@@ -26,7 +26,9 @@ public class DateUtil implements Serializable {
         }
         Calendar day1 = Calendar.getInstance();
         Calendar day2 = Calendar.getInstance();
+        assert formattedDate1 != null;
         day1.setTime(formattedDate1);
+        assert formattedDate2 != null;
         day2.setTime(formattedDate2);
         int positiveDifference = daysBetween(day1, day2);
         if(day1.compareTo(day2) < 0) {
@@ -38,7 +40,7 @@ public class DateUtil implements Serializable {
 
 
     /*
-    *@return absolute value of difference in days
+    *@return absolute value of difference in Days
      */
     public static int daysBetween(Calendar day1, Calendar day2){
         Calendar dayOne = (Calendar) day1.clone(),
