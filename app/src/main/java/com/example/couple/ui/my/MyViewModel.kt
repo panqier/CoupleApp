@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -12,8 +13,9 @@ class MyViewModel : ViewModel() {
     private val _isDataFieldRetrieved = MutableLiveData<Boolean>()
     val isDataFieldRetrieved: MutableLiveData<Boolean> = _isDataFieldRetrieved
 
-    var dataFieldVal: String = ""
-
+    var dataFieldVal : String = " "
+    val userName = MutableLiveData(FirebaseAuth.getInstance().currentUser?.displayName)
+    val userEmail = FirebaseAuth.getInstance().currentUser?.email
 
     fun getDataFiledFromFirestore(dataField: String) {
         val db  = Firebase.firestore
@@ -37,4 +39,22 @@ class MyViewModel : ViewModel() {
         }
     }
 
+    fun updateUserName(userName: String) {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        // create UserProfileChangeRequest object
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(userName)
+            .build()
+
+        // call updateProfile method
+        user?.updateProfile(profileUpdates)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("TAG", "Update user name successfully")
+                } else {
+                    Log.d("TAG", "Update user name failure")
+                }
+            }
+    }
 }

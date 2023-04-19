@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.couple.MainActivity
 import com.example.couple.data.data.UserProfile
+import com.example.couple.data.data.getUserName
 import com.example.couple.databinding.ActivityLoginBinding
 import com.example.couple.ui.my.MyViewModel
 import com.example.couple.util.UidDecode
@@ -56,12 +56,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
-
-    private fun setUpObservers(){
-        viewModel.signInEmail.observe(this, {
-            binding.loginEditEmail.text
-        })
     }
 
     private fun fetchSignInMethod(){
@@ -112,6 +106,8 @@ class LoginActivity : AppCompatActivity() {
                             "Error fetching sign-in methods for email",
                             Toast.LENGTH_SHORT
                         ).show()
+                        binding.loginProgressBar.visibility = View.GONE
+                        binding.signInButton.visibility = View.VISIBLE
                     }
             } else {
                 Toast.makeText(baseContext, "Invalid email or password format", Toast.LENGTH_SHORT).show()
@@ -156,8 +152,17 @@ class LoginActivity : AppCompatActivity() {
                     if(verification == true) {
                         auth.uid?.let {
                             UidDecode.EncodeUserId(it)
-                            firestore.collection("User").document(it).set(UserProfile(UidDecode.getUserNumericId(),email)) }
-                        userProfile = UserProfile(UidDecode.getUserNumericId(),email)
+                            getUserName(baseContext)?.let { it1 ->
+                                UserProfile(UidDecode.getUserNumericId(),email,
+                                    it1
+                                )
+                            }?.let { it2 -> firestore.collection("User").document(it).set(it2) }
+                        }
+                        userProfile = getUserName(baseContext)?.let {
+                            UserProfile(UidDecode.getUserNumericId(),email,
+                                it
+                            )
+                        }!!
                         Toast.makeText(baseContext, "Log In Success",
                             Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)

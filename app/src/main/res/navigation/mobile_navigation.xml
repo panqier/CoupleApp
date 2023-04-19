@@ -33,6 +33,19 @@
         android:id="@+id/navigation_my"
         android:name="com.example.couple.ui.my.MyFragment"
         android:label="@string/title_my"
-        tools:layout="@layout/fragment_my"/>
+        tools:layout="@layout/fragment_my">
+
+        <action
+            android:id="@+id/action_myFragment_to_myInformationFragment"
+            app:destination="@id/navigation_my_info"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_my_info"
+        android:name="com.example.couple.ui.my.MyInformationFragment"
+        android:label="MyInformation"
+        tools:layout="@layout/my_information_fragment"/>
 
 </navigation>

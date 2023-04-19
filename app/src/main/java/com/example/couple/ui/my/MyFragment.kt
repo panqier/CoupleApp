@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.couple.R
+import com.example.couple.data.data.saveUserName
 import com.example.couple.ui.signin.LoginActivity
 import com.example.couple.databinding.FragmentMyBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +32,7 @@ class MyFragment : Fragment() {
             viewModel = myViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        setUpListeners()
         return binding.root
     }
 
@@ -44,6 +48,7 @@ class MyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fetchLogOut()
         observers()
+        setUpUserHeader()
         myViewModel.getDataFiledFromFirestore("userId")
     }
 
@@ -61,11 +66,24 @@ class MyFragment : Fragment() {
     private fun observers() {
         myViewModel.isDataFieldRetrieved.observe(viewLifecycleOwner) {
             if(it) {
-                binding.myProfileId.text = getString(R.string.profile_edit_my_id_prefix)+ myViewModel.dataFieldVal
+                binding.myProfileId.text = getString(R.string.profile_edit_my_id_prefix) + myViewModel.dataFieldVal
             } else {
                 myViewModel.getDataFiledFromFirestore("userId")
             }
         }
     }
 
+    private fun setUpUserHeader() {
+        binding.myProfileNameTextview.addTextChangedListener {
+            myViewModel.userName.value = it.toString().trim()
+            myViewModel.updateUserName(it.toString().trim())
+            saveUserName(requireContext(), it.toString().trim())
+        }
+    }
+
+    private fun setUpListeners() {
+        binding.includeMyInfoCard.root.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_myFragment_to_myInformationFragment)
+        }
+    }
 }

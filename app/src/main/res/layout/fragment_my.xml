@@ -28,20 +28,24 @@
         android:layout_height="50dp"
         android:contentDescription="@string/my_profile_user_photo_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/ic_my_profile_photo"
         android:layout_marginStart="20dp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/my_profile_name_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_profile_user_name"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:text="@{viewModel.userName}"
+        android:inputType="textPersonName"
+        android:hint="@string/my_profile_name"
         android:textSize="20sp"
+        android:singleLine="true"
+        android:background="@android:color/transparent"
         android:textStyle="bold"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/my_profile_photo"
-        app:layout_constraintTop_toTopOf="@id/my_profile_photo"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/my_profile_id"
@@ -50,6 +54,7 @@
         android:textStyle="italic"
         android:text="@string/my_profile_user_id"
         app:layout_constraintTop_toBottomOf="@id/my_profile_name_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/my_profile_name_textview"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
