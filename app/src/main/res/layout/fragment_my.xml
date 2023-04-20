@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/my_profile_photo"
         android:layout_width="50dp"
         android:layout_height="50dp"

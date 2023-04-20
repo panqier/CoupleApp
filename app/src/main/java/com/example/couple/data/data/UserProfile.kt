@@ -5,7 +5,8 @@ import android.content.Context
 data class UserProfile(
     val userId: String,
     val email: String,
-    val userName: String
+    val userName: String,
+    val imageUrl: String
 )
 
     fun saveUser(context: Context, user: UserProfile) {
@@ -14,6 +15,7 @@ data class UserProfile(
         editor.putString("user_id", user.userId)
         editor.putString("user_email", user.email)
         editor.putString("user_name", user.userName)
+        editor.putString("image_url", user.imageUrl)
         editor.apply()
     }
 
@@ -22,8 +24,9 @@ data class UserProfile(
         val id = prefs.getString("user_id", null)
         val email = prefs.getString("user_email", null)
         val userName = prefs.getString("user_name", null)
-        if (email != null && id != null && userName != null) {
-            return UserProfile(id, email, userName)
+        val image = prefs.getString("image_url", null)
+        if (email != null && id != null && userName != null && image != null) {
+            return UserProfile(id, email, userName, image)
         }
         return null
     }

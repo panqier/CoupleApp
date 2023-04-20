@@ -1,5 +1,6 @@
 package com.example.couple.ui.my
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 class MyViewModel : ViewModel() {
 
@@ -47,6 +49,7 @@ class MyViewModel : ViewModel() {
             .setDisplayName(userName)
             .build()
 
+
         // call updateProfile method
         user?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
@@ -57,4 +60,35 @@ class MyViewModel : ViewModel() {
                 }
             }
     }
+
+    fun uploadUserImage(imageUrl: Uri) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val storageRef = FirebaseStorage.getInstance().reference.child("user/$userId.jpg")
+
+        // Upload the file to Firebase Storage
+        storageRef.putFile(imageUrl)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL from the task snapshot
+                storageRef.downloadUrl
+                    .addOnSuccessListener { downloadUrl ->
+                        // Update the user's photoUrl field with the download URL
+                        val profileUpdates = UserProfileChangeRequest.Builder()
+                            .setPhotoUri(downloadUrl)
+                            .build()
+
+                        FirebaseAuth.getInstance().currentUser?.updateProfile(profileUpdates)
+                            ?.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d("TAG", "User profile photo updated.")
+                                } else {
+                                    Log.d("TAG", "User profile photo update failed.")
+                                }
+                            }
+                    }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "Upload failed: $exception")
+            }
+    }
+
 }

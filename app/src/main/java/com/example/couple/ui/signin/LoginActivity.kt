@@ -154,13 +154,13 @@ class LoginActivity : AppCompatActivity() {
                             UidDecode.EncodeUserId(it)
                             getUserName(baseContext)?.let { it1 ->
                                 UserProfile(UidDecode.getUserNumericId(),email,
-                                    it1
+                                    it1, ""
                                 )
                             }?.let { it2 -> firestore.collection("User").document(it).set(it2) }
                         }
                         userProfile = getUserName(baseContext)?.let {
                             UserProfile(UidDecode.getUserNumericId(),email,
-                                it
+                                it, ""
                             )
                         }!!
                         Toast.makeText(baseContext, "Log In Success",
