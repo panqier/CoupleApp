@@ -91,6 +91,9 @@ class MyFragment : Fragment() {
         binding.includeMyInfoCard.root.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_myFragment_to_myInformationFragment)
         }
+        binding.includeRelationshipCard.root.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_navigation_my_to_navigation_my_relationship)
+        }
     }
 
     private val getContent = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri: Uri? ->

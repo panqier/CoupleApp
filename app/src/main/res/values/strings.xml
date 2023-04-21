@@ -30,6 +30,13 @@
     <string name="profile_edit_user_agreement">User Agreement</string>
     <string name="profile_edit_log_out">Log Out</string>
     <string name="profile_edit_my_id_prefix">id: </string>
+    <string name="my_profile_name">Name</string>
+    <string name="my_relationship_status">My Current status: single</string>
+    <string name="my_relationship_body_text">I want to ...</string>
+    <string name="my_relationship_partner_paired_text">Enter your partner\'s id</string>
+    <string name="your_partner_id">Your Partner\'s id</string>
+    <string name="pair_with_someone">Pair with Someone</string>
+    <string name="pair_button">Invite</string>
 
     //login
     <string name="login_login_text">Login/Register</string>
@@ -42,5 +49,10 @@
     <string name="send_link">Send Link</string>
     <string name="reset_password_close_button">Reset password close button</string>
     <string name="login_page_image">login_page_image</string>
-    <string name="my_profile_name">Name</string>
+    <string name="enter_your_invite_code_to_pair">Enter your Invite Code</string>
+    <string name="invite_code">Invite Code</string>
+    <string name="enter">Enter</string>
+    <string name="or">OR</string>
+    <string name="my_relationship_bridge_image">my_relationship_bridge_image</string>
+    <string name="days_card_heart_icon">days card heart icon</string>
 </resources>

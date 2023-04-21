@@ -40,6 +40,11 @@
             app:destination="@id/navigation_my_info"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_my_to_navigation_my_relationship"
+            app:destination="@id/navigation_my_relationship"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -47,5 +52,11 @@
         android:name="com.example.couple.ui.my.MyInformationFragment"
         android:label="MyInformation"
         tools:layout="@layout/my_information_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_my_relationship"
+        android:name="com.example.couple.ui.my.MyRelationshipFragment"
+        android:label="MyRelationship"
+        tools:layout="@layout/my_relationship_fragment"/>
 
 </navigation>
