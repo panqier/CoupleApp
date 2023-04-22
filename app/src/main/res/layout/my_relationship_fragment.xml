@@ -70,28 +70,15 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/my_relationship_pair_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_relationship_body_text"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:textColor="@color/grey_591"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
             android:id="@+id/my_relationship_pair_desc_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:textAllCaps="true"
             android:textStyle="bold"
+            android:textSize="20sp"
             android:textColor="@color/grey_591"
-            app:layout_constraintTop_toBottomOf="@id/my_relationship_pair_text"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="@string/pair_with_someone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -116,7 +103,7 @@
             android:text="@string/or"/>
 
         <include
-            android:id="@+id/my_relationship_partner_id_card"
+            android:id="@+id/my_relationship_invite_copy_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/include_my_relationship_pair_card"

@@ -9,6 +9,7 @@
     app:cardCornerRadius="13dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/pink_FC5"
+    app:cardUseCompatPadding="true"
     android:layout_margin="15dp"
     app:cardElevation="4dp">
 
@@ -21,10 +22,9 @@
             android:id="@+id/my_relationship_partner_code_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:layout_margin="10dp"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/my_relationship_enter_button"
             android:hint="@string/invite_code"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="@string/enter"
+            android:text="@string/pair"
             android:background="@drawable/my_relationship_pair_partner_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

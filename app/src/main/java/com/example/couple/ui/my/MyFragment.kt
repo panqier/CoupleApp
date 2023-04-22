@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.couple.R
+import com.example.couple.data.data.clearUser
 import com.example.couple.data.data.saveUserName
 import com.example.couple.ui.signin.LoginActivity
 import com.example.couple.databinding.FragmentMyBinding
@@ -60,6 +61,7 @@ class MyFragment : Fragment() {
         user = auth.currentUser!!
         binding.myProfileLogOutBtn.setOnClickListener {
             auth.signOut()
+            clearUser(requireContext())
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }

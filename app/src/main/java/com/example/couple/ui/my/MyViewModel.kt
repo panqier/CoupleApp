@@ -2,8 +2,10 @@ package com.example.couple.ui.my
 
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.couple.data.data.UserProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
@@ -18,6 +20,15 @@ class MyViewModel : ViewModel() {
     var dataFieldVal : String = " "
     val userName = MutableLiveData(FirebaseAuth.getInstance().currentUser?.displayName)
     val userEmail = FirebaseAuth.getInstance().currentUser?.email
+    private val _userProfile = MutableLiveData<UserProfile>()
+
+    fun setUserProfile(userProfile: UserProfile) {
+        _userProfile.value = userProfile
+    }
+
+    fun getUserProfile(): LiveData<UserProfile> {
+        return _userProfile
+    }
 
     fun getDataFiledFromFirestore(dataField: String) {
         val db  = Firebase.firestore
@@ -42,23 +53,25 @@ class MyViewModel : ViewModel() {
     }
 
     fun updateUserName(userName: String) {
-        val user = FirebaseAuth.getInstance().currentUser
+        val db  = Firebase.firestore
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val docRef = currentUser?.let { db.collection("User").document(it.uid) }
+        docRef?.update("userName", userName)?.addOnSuccessListener {
+            Log.d("TAG", "Update pair status successfully")
+        }?.addOnFailureListener {
+            Log.d("TAG", "Update pair status failure")
+        }
+    }
 
-        // create UserProfileChangeRequest object
-        val profileUpdates = UserProfileChangeRequest.Builder()
-            .setDisplayName(userName)
-            .build()
-
-
-        // call updateProfile method
-        user?.updateProfile(profileUpdates)
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("TAG", "Update user name successfully")
-                } else {
-                    Log.d("TAG", "Update user name failure")
-                }
-            }
+    fun updatePairStatus(isPaired: Boolean) {
+        val db  = Firebase.firestore
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val docRef = currentUser?.let { db.collection("User").document(it.uid) }
+        docRef?.update("paired", isPaired)?.addOnSuccessListener {
+            Log.d("TAG", "Update pair status successfully")
+        }?.addOnFailureListener {
+            Log.d("TAG", "Update pair status failure")
+        }
     }
 
     fun uploadUserImage(imageUrl: Uri) {
