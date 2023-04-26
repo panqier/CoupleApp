@@ -13,11 +13,10 @@ class DaysViewModel : ViewModel() {
     init {
         _daysList.postValue(
             listOf(
-                Days("hug","","2022-01-01"),
-                Days("Pan birthday","","1997-06-21"),
-                Days("first date","","2022-11-30"),
-                Days("this year travel","","2023-11-01"),
-                Days("vaccine","","2023-04-10")
+                Days("first met","","2023-01-01"),
+                Days("Bob birthday","","2023-12-31"),
+                Days("first date","","2023-01-01"),
+                Days("this year travel","","2023-12-31"),
             )
         )
     }

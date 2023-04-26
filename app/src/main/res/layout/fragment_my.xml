@@ -36,7 +36,7 @@
         android:id="@+id/my_profile_name_textview"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:text="@{viewModel.userName}"
+        android:text="@={viewModel.userName}"
         android:inputType="textPersonName"
         android:hint="@string/my_profile_name"
         android:textSize="20sp"
@@ -125,7 +125,6 @@
         android:id="@+id/my_profile_log_out_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/profile_edit_log_out"/>

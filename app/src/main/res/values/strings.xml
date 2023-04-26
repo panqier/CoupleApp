@@ -12,7 +12,7 @@
     <string name="days_card_together_days">We have been together 334 days</string>
     <string name="days_card_together_start_date">since: 2022–5-1</string>
     <string name="days_memory_cell_icon">memory icon</string>
-    <string name="days_memory_cell_description_passed">Our first %1$s is been</string>
+    <string name="days_memory_cell_description_passed">%1$s is been</string>
     <string name="days_memory_cell_description_coming">%1$s will happen in</string>
     <string name="days_memory_cell_start_date">Jan 12, 2023</string>
     <string name="days_memory_cell_days">%1$s days</string>
@@ -32,7 +32,6 @@
     <string name="profile_edit_my_id_prefix">id: </string>
     <string name="my_profile_name">Name</string>
     <string name="my_relationship_status">My Current status: single</string>
-    <string name="my_relationship_body_text">I want to ...</string>
     <string name="my_relationship_partner_paired_text">Enter your partner\'s id</string>
     <string name="your_partner_id">Your Partner\'s id</string>
     <string name="pair_with_someone">Pair with Someone</string>
@@ -58,4 +57,11 @@
     <string name="days_card_heart_icon">days card heart icon</string>
     <string name="copy">copy</string>
     <string name="pair">Pair</string>
+    <string name="add_new">Add new</string>
+    <string name="add_event">Add Event</string>
+    <string name="days_memory_edit_time">2023-01-01</string>
+    <string name="save">save</string>
+    <string name="unlink_my_relationship">unlink my relationship</string>
+    <string name="unlink">unlink</string>
+    <string name="click_to_end">Click To End</string>
 </resources>

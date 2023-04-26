@@ -4,6 +4,7 @@
     android:layout_marginTop="10dp"
     app:cardCornerRadius="14dp"
     app:cardBackgroundColor="@color/white"
+    app:cardUseCompatPadding="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,20 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
+        android:paddingHorizontal="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageButton
-            android:id="@+id/days_memory_cell_edit_button"
-            android:layout_marginStart="5dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="5dp"
-            android:contentDescription="@string/days_memory_cell_edit_button"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/ic_days_memory_cell_edit"
-            app:layout_constraintBottom_toBottomOf="@id/days_memory_cell_small_img"/>
 
         <ImageView
             android:id="@+id/days_memory_cell_small_img"
@@ -33,7 +24,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/days_memory_cell_icon"
-            app:layout_constraintStart_toEndOf="@id/days_memory_cell_edit_button"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/days_memory_cell_description"
             android:src="@drawable/ic_days_memory_cell"/>
@@ -44,13 +35,13 @@
             android:layout_height="wrap_content"
             android:text="@string/days_memory_cell_start_date"
             app:layout_constraintTop_toTopOf="parent"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/days_memory_cell_description"
             app:layout_constraintStart_toStartOf="@id/days_memory_cell_description"/>
 
         <TextView
             android:id="@+id/days_memory_cell_description"
-            android:layout_width="145dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/days_memory_cell_small_img"
@@ -69,18 +60,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/days_memory_cell_delete_button"/>
-
-        <ImageButton
-            android:id="@+id/days_memory_cell_delete_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:contentDescription="@string/days_memory_cell_delete_button"
-            android:background="@drawable/ic_days_memory_cell_delete"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

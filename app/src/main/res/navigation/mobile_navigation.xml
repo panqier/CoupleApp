@@ -9,7 +9,12 @@
         android:id="@+id/navigation_days"
         android:name="com.example.couple.ui.days.DaysFragment"
         android:label="@string/title_days"
-        tools:layout="@layout/fragment_days" />
+        tools:layout="@layout/fragment_days" >
+        <action
+            android:id="@+id/action_navigation_days_to_navigation_days_edit"
+            app:destination="@id/navigation_days_edit"
+            app:popUpTo="@id/navigation_days_edit" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_account"
@@ -59,4 +64,9 @@
         android:label="MyRelationship"
         tools:layout="@layout/my_relationship_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_days_edit"
+        android:name="com.example.couple.ui.days.DaysMemoryEditFragment"
+        android:label="EditMemoryDays"
+        tools:layout="@layout/days_memory_edit"/>
 </navigation>

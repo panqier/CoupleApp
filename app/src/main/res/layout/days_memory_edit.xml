@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/days_memory_edit_event_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="text"
+        android:singleLine="true"
+        android:hint="@string/add_event"
+        android:textColorHint="@color/grey_591"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="15dp"
+        android:paddingHorizontal="10dp"
+        android:background="@color/white_DE9"
+        android:textSize="23sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:drawableStart="@drawable/ic_days_memory_edit" />
+
+    <TextView
+        android:id="@+id/days_memory_edit_date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/days_memory_edit_event_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:background="@color/white_DE9"
+        android:text="@string/days_memory_edit_time"
+        android:textColor="@color/grey_626"
+        android:textSize="23sp"
+        android:drawablePadding="10dp"
+        app:drawableStartCompat="@drawable/ic_days_memory_calender" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

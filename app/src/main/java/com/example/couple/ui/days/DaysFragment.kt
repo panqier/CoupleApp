@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.couple.R
 import com.example.couple.databinding.FragmentDaysBinding
 
 class DaysFragment : Fragment() {
@@ -39,6 +41,7 @@ class DaysFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpDaysListRecyclerView()
+        setUpListeners()
     }
 
     private fun setUpDaysListRecyclerView() {
@@ -53,6 +56,12 @@ class DaysFragment : Fragment() {
                 binding.daysListRecyclerView.visibility = View.VISIBLE
                 binding.daysListRecyclerView.adapter = daysListBindingAdapter
             }
+        }
+    }
+
+    private fun setUpListeners() {
+        binding.daysFloatingAddButton.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_navigation_days_to_navigation_days_edit)
         }
     }
 }

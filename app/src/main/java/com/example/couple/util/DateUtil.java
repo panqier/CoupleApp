@@ -70,4 +70,11 @@ public class DateUtil implements Serializable {
     private static SimpleDateFormat getRequestDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     }
+
+    public static String getRequestDateStringFormat(Date date) {
+        if(date == null ) {
+            return "";
+        }
+        return getRequestDateFormat().format(date);
+    }
 }

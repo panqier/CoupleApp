@@ -4,45 +4,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
     app:cardCornerRadius="13dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/pink_FC5"
+    app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    android:layout_margin="15dp"
-    app:cardElevation="4dp">
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="15dp">
+        android:paddingBottom="20dp">
 
-        <EditText
-            android:id="@+id/my_relationship_partner_code_input"
+        <TextView
+            android:id="@+id/my_relationship_unlink_body_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="50dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/my_relationship_enter_button"
-            android:hint="@string/invite_code"
-            android:maxLength="8"
-            android:singleLine="true"
-            android:textSize="20sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/click_to_end"/>
 
         <Button
-            android:id="@+id/my_relationship_enter_button"
+            android:id="@+id/my_relationship_unlink_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="@string/pair"
-            android:background="@drawable/my_relationship_pair_partner_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/my_relationship_unlink_body_text"
+            android:text="@string/unlink"
+            android:drawableEnd="@drawable/ic_my_relationship_unlink"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </com.google.android.material.card.MaterialCardView>

@@ -17,6 +17,9 @@ class MyViewModel : ViewModel() {
     private val _isDataFieldRetrieved = MutableLiveData<Boolean>()
     val isDataFieldRetrieved: MutableLiveData<Boolean> = _isDataFieldRetrieved
 
+    private val _isPaired = MutableLiveData<Boolean>()
+    val isPaired: MutableLiveData<Boolean> = _isPaired
+
     var dataFieldVal : String = " "
     val userName = MutableLiveData(FirebaseAuth.getInstance().currentUser?.displayName)
     val userEmail = FirebaseAuth.getInstance().currentUser?.email
@@ -68,6 +71,7 @@ class MyViewModel : ViewModel() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val docRef = currentUser?.let { db.collection("User").document(it.uid) }
         docRef?.update("paired", isPaired)?.addOnSuccessListener {
+            _isPaired.postValue(isPaired)
             Log.d("TAG", "Update pair status successfully")
         }?.addOnFailureListener {
             Log.d("TAG", "Update pair status failure")
@@ -102,6 +106,31 @@ class MyViewModel : ViewModel() {
             .addOnFailureListener { exception ->
                 Log.d("TAG", "Upload failed: $exception")
             }
+    }
+
+
+    fun getPairedStatus() {
+        val db = Firebase.firestore
+        val userCollection = db.collection("User")
+        val user = FirebaseAuth.getInstance().currentUser
+        val uid = user?.uid
+        if (uid != null) {
+            userCollection.document(uid).get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val paired = document.getBoolean("paired")
+                        if (paired!= null) {
+                            // fieldValue will be true or false
+                            if(paired == true) _isPaired.postValue(true)
+                            else _isPaired.postValue(false)
+                        }
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Handle any errors here
+                }
+        }
+
     }
 
 }
