@@ -7,12 +7,7 @@ Function developed:
 2. Link with another person by sharing their invitation code or input other user invitation code
 2. Able to set up the day they start relationship
 3. Create their memory days with editable date and text
-
-![coupleAppMyInfo](https://user-images.githubusercontent.com/70109318/235262606-1fa12868-af94-4cd9-9fff-8ee399363813.gif)
-
-![coupleAppLogin](https://user-images.githubusercontent.com/70109318/235263365-d139e08f-88fe-4e62-937f-6ae079dffada.gif)
-
-![coupleAppMyDay](https://user-images.githubusercontent.com/70109318/235263577-1983606f-5e66-4954-af31-f07911bc135d.gif)
+![coupleAppMyLogin](https://user-images.githubusercontent.com/70109318/235264413-fcb1d3ce-1373-4994-b6b0-24fde8e2a5bd.gif)![coupleAppMyRelation](https://user-images.githubusercontent.com/70109318/235264425-992352ff-91d0-49a9-9934-685d5092075c.gif)![coupleAppMyDay](https://user-images.githubusercontent.com/70109318/235263577-1983606f-5e66-4954-af31-f07911bc135d.gif)
 
 
 Function will develop:
