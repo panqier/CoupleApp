@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.couple.R
 import com.example.couple.data.data.Days
@@ -14,7 +15,7 @@ import com.example.couple.util.DateUtil
 import java.time.LocalDate
 import kotlin.math.abs
 
-class DaysListBindingAdapter(val daysList: List<Days> = emptyList()) : RecyclerView.Adapter<DaysListBindingAdapter.DaysListViewHolder>(){
+class DaysListBindingAdapter(val daysList: List<Days> = emptyList(), val daysViewModel: DaysViewModel) : RecyclerView.Adapter<DaysListBindingAdapter.DaysListViewHolder>(){
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaysListViewHolder {
@@ -25,7 +26,7 @@ class DaysListBindingAdapter(val daysList: List<Days> = emptyList()) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: DaysListViewHolder, position: Int) {
-        holder.bind(context, daysList[position])
+        holder.bind(context, daysList[position], daysViewModel, position)
     }
 
     override fun getItemCount(): Int {
@@ -38,7 +39,8 @@ class DaysListBindingAdapter(val daysList: List<Days> = emptyList()) : RecyclerV
                 val date: TextView = binding.daysMemoryCellStartDateText
                 val description: TextView = binding.daysMemoryCellDescription
                 val count: TextView = binding.daysMemoryCellHowManyDays
-                fun bind(context: Context, days: Days) {
+                val card: View = binding.daysMemoryCellCard
+                fun bind(context: Context, days: Days, daysViewModel: DaysViewModel, position: Int) {
                     date.text = days.date
                     icon.visibility = View.VISIBLE
                     description.text =
@@ -48,6 +50,12 @@ class DaysListBindingAdapter(val daysList: List<Days> = emptyList()) : RecyclerV
                             context.resources.getString(R.string.days_memory_cell_description_coming, days.type)
                     count.text =
                         context.resources.getString(R.string.days_memory_cell_days, abs(differentDays(days)).toString())
+                    card.setOnClickListener {
+                        Navigation.findNavController(it).navigate(R.id.action_navigation_days_to_navigation_days_edit)
+                        daysViewModel.setSelectedDay(days)
+                        daysViewModel.setSelectedPosition(position)
+                        daysViewModel.isNavigateFromCard.postValue(true)
+                    }
                 }
             }
 }

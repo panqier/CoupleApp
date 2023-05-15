@@ -41,6 +41,7 @@
         app:drawableStartCompat="@drawable/ic_days_memory_calender" />
 
     <Button
+        android:id="@+id/days_memory_cell_save_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/save"

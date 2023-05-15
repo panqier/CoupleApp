@@ -24,7 +24,7 @@ class MyRelationshipFragment :Fragment(){
     private lateinit var binding: MyRelationshipFragmentBinding
     private lateinit var myViewModel: MyViewModel
     private lateinit var daysViewModel: DaysViewModel
-    private lateinit var daysList: DaysList
+    private lateinit var daysList: List<Days>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,13 +120,14 @@ class MyRelationshipFragment :Fragment(){
                                 Paired(
                                     currentUserWithPairStatus,
                                     partnerProfileWithPairStatus,
-                                    daysList
+                                    daysList,
+                                    startDate = "2023-01-01"
                                 )
                             ).addOnSuccessListener { documentReference ->
                                 Toast.makeText(context, "Pairing successful!", Toast.LENGTH_SHORT)
                                     .show()
                                 dialog.dismiss()
-
+                                saveStartDate(requireContext(), "2023-01-01")
                             }.addOnFailureListener { exception ->
                                 Toast.makeText(
                                     context,
@@ -158,7 +159,7 @@ class MyRelationshipFragment :Fragment(){
             val pairedRef = db.collection("Paired")
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
-                pairedRef.whereEqualTo("user1.email", listOf(currentUser.email))
+                pairedRef.whereEqualTo("user1.email", currentUser.email)
                     .get()
                     .addOnSuccessListener { documents ->
                         if (!documents.isEmpty) {
@@ -193,7 +194,7 @@ class MyRelationshipFragment :Fragment(){
     private fun observers() {
         daysViewModel.daysList.observe(viewLifecycleOwner) { list ->
             if (!list.isNullOrEmpty()) {
-                daysList = DaysList(list)
+                daysList = list
             }
         }
         myViewModel.isPaired.observe(viewLifecycleOwner) { isPaired ->

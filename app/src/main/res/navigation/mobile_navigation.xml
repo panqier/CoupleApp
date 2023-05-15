@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_days">
+    app:startDestination="@+id/navigation_my">
 
     <fragment
         android:id="@+id/navigation_days"
@@ -43,13 +43,11 @@
         <action
             android:id="@+id/action_myFragment_to_myInformationFragment"
             app:destination="@id/navigation_my_info"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:popUpTo="@id/navigation_my_info"/>
         <action
             android:id="@+id/action_navigation_my_to_navigation_my_relationship"
             app:destination="@id/navigation_my_relationship"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popUpTo="@id/navigation_my_relationship" />
     </fragment>
 
     <fragment

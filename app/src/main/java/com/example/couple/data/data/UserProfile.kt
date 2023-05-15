@@ -46,18 +46,18 @@ data class UserProfile(
 
 
 fun saveUserName(context: Context, userName: String) {
-        val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("user_name", userName)
-        editor.apply()
-    }
+    val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+    val editor = prefs.edit()
+    editor.putString("user_name", userName)
+    editor.apply()
+}
 
-    fun getUserName(context: Context): String? {
-        val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        val userName = prefs.getString("user_name", null)
-        if(userName != null) {
-            return userName
-        }
-        return null
+fun getUserName(context: Context): String? {
+    val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+    val userName = prefs.getString("user_name", null)
+    if(userName != null) {
+        return userName
     }
+    return null
+}
 

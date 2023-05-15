@@ -9,7 +9,7 @@
     //days
     <string name="days_card_profile_left_icon">profile icon left</string>
     <string name="days_card_profile_right_icon">profile icon right</string>
-    <string name="days_card_together_days">We have been together 334 days</string>
+    <string name="days_card_together_days">We have been together %1$s days</string>
     <string name="days_card_together_start_date">since: 2022–5-1</string>
     <string name="days_memory_cell_icon">memory icon</string>
     <string name="days_memory_cell_description_passed">%1$s is been</string>

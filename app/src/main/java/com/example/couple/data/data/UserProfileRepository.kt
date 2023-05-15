@@ -4,7 +4,12 @@ import android.app.Application
 import android.content.Context
 import com.example.couple.util.InviteCodeHash
 import com.example.couple.util.UidDecode
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 class UserProfileRepository constructor(val mContext: Context){
 
@@ -56,6 +61,65 @@ class UserProfileRepository constructor(val mContext: Context){
                     errorCallback(exception)
                 }
         }
+
+        suspend fun retrieveCurrentDays(context: Context): Deferred<Unit> = coroutineScope {
+            async {
+                val db = Firebase.firestore
+                val pairedRef = db.collection("Paired")
+                val currentUser = FirebaseAuth.getInstance().currentUser
+
+                if (currentUser != null) {
+                    pairedRef.whereEqualTo("user1.email", currentUser.email)
+                        .get()
+                        .addOnSuccessListener { documents ->
+                            if (!documents.isEmpty) {
+                                val daysList = mutableListOf<Days>()
+                                for (document in documents) {
+                                    val list = document.get("days") as? List<HashMap<String, Any>>
+                                    if (list != null) {
+                                        for (item in list) {
+                                            val days = Days(
+                                                item["type"] as String,
+                                                item["img"] as String,
+                                                item["date"] as String
+                                            )
+                                            daysList.add(days)
+                                        }
+                                    }
+                                }
+                                saveDays(context, daysList)
+                            } else {
+                                pairedRef.whereEqualTo("user2.email", currentUser.email)
+                                    .get()
+                                    .addOnSuccessListener { documents ->
+                                        if (!documents.isEmpty) {
+                                            val daysList = mutableListOf<Days>()
+                                            for (document in documents) {
+                                                val list = document.get("days") as? List<HashMap<String, Any>>
+                                                if (list != null) {
+                                                    for (item in list) {
+                                                        val days = Days(
+                                                            item["type"] as String,
+                                                            item["img"] as String,
+                                                            item["date"] as String
+                                                        )
+                                                        daysList.add(days)
+                                                    }
+                                                }
+                                            }
+                                            saveDays(context, daysList)
+                                        }
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        // Handle failure
+                                    }
+                            }
+                        }
+                        .await() // Wait for the database operation to complete
+                }
+            }
+        }
+
 
 
     }

@@ -36,7 +36,6 @@ class MyFragment : Fragment() {
             viewModel = myViewModel
             lifecycleOwner = viewLifecycleOwner
         }
-        setUpListeners()
         return binding.root
     }
 
@@ -53,6 +52,7 @@ class MyFragment : Fragment() {
         fetchLogOut()
         observers()
         setUpUserHeader()
+        setUpListeners()
         myViewModel.getDataFiledFromFirestore("userId")
     }
 
@@ -90,10 +90,10 @@ class MyFragment : Fragment() {
     }
 
     private fun setUpListeners() {
-        binding.includeMyInfoCard.root.setOnClickListener {
+        binding.includeMyInfoCard.myInfoCardLayout.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_myFragment_to_myInformationFragment)
         }
-        binding.includeRelationshipCard.root.setOnClickListener {
+        binding.includeRelationshipCard.myRelationshipCardLayout.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_navigation_my_to_navigation_my_relationship)
         }
     }
